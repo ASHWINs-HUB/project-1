@@ -1,20 +1,15 @@
-// riskCalculator.js
-// Intentional buggy file for bug detection demo
+// riskEngine.js
+// Intentional runtime bug
 
-function calculateRisk(commitFrequency, prRejectionRate, delayDays) {
+function calculateRisk(score, threshold) {
 
-    let productivityScore = commitFrequency * 2;
+    let riskLevel = score / threshold;
 
-    let qualityScore = (1 - prRejectionRate) * 100;
+    if (riskLevel > 1) {
+        alertMessage = "High Risk";  // ❌ undefined variable (no let/const)
+    }
 
-    let delayImpact = delayDays / 0; // ❌ Division by zero bug
-
-    let finalRisk = productivityScore + qualityScore + delayImpact;
-
-    if (finalRisk > 100)
-        finalRisk = 100
-
-    return finalRisk.toFixed(2);
+    return alertMessage;
 }
 
 module.exports = calculateRisk;
